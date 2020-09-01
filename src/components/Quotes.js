@@ -68,6 +68,12 @@ const filterQuotes = (quotes, tags) => {
   )
 }
 
+const getTagOptions = quotes => {
+  const tagOptions = [...new Set(quotes.map(quote => quote.tags).flat())]
+  return tagOptions.sort()
+}
+const TAG_OPTIONS = getTagOptions(ALL_QUOTES)
+
 export default ({}) => {
   const [speed, setSpeed] = useState(DEFAULT_SPEED)
   const [pause, setPause] = useState(false)
@@ -136,7 +142,11 @@ export default ({}) => {
           {showQuote ? formatQuote(showQuote) : "No quotes matching filter..."}
         </h2>
         <Controller>
-          <Tags tags={tags} onTagsChange={tags => setTags(tags)} />
+          <Tags
+            tags={tags}
+            onTagsChange={tags => setTags(tags)}
+            tagOptions={TAG_OPTIONS}
+          />
           {filteredQuotes.length > 1 && (
             <SpeedHandler
               speed={speed}
