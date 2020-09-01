@@ -52,6 +52,17 @@ const RangeSlider = styled.input`
   }
 `
 
+const Speed = styled.span`
+  font-size: 12px;
+  margin-bottom: -25px;
+  color: #888;
+`
+
+const formatSpeed = speed => {
+  if (speed < 1000) return `${Math.floor(speed)}ms`
+  else return `${Math.floor(speed / 100) / 10}s`
+}
+
 export default ({ speed, onSpeedChange, pause, onPause, onQuoteChange }) => {
   const handleSpeed = multiplier => {
     const newSpeed = speed * multiplier
@@ -61,6 +72,9 @@ export default ({ speed, onSpeedChange, pause, onPause, onQuoteChange }) => {
 
   return (
     <Wrapper>
+      <Wrapper>
+        <Speed>{formatSpeed(speed)}</Speed>
+      </Wrapper>
       <FlexWrapper>
         <Button onClick={() => handleSpeed(0.9)}>-</Button>
         <RangeSlider
