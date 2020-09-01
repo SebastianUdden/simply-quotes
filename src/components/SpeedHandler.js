@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { MIN_SPEED, MAX_SPEED } from "../constants/speed"
 
@@ -30,36 +30,29 @@ const Button = styled.button`
   width: 40px;
 `
 
-const Line = styled.div`
-  border-bottom: 5px solid #f3f3f3;
-  height: 1px;
+const RangeSlider = styled.input`
+  margin: -1px;
   width: 100%;
-  position: relative;
+  appearance: none;
+  height: 5px;
+  background-color: #f3f3f3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  :hover {
+    opacity: 1;
+  }
+  &::-webkit-slider-thumb {
+    appearance: none;
+    margin-top: -2px;
+    width: 5px;
+    height: 15px;
+    background-color: #444;
+    cursor: pointer;
+  }
 `
-
-const LineAcross = styled.div`
-  border-right: 3px solid #444;
-  height: 10px;
-  width: 1px;
-  margin-top: -2px;
-  position: absolute;
-  left: ${p => p.percentage}%;
-`
-
-const getPosition = (speed, min, max) => {
-  const position = (speed - min) / (max - min)
-  return Math.floor(position * 100)
-}
 
 export default ({ speed, onSpeedChange, pause, onPause, onQuoteChange }) => {
-  const [position, setPosition] = useState(
-    getPosition(speed, MIN_SPEED, MAX_SPEED)
-  )
-
-  useEffect(() => {
-    setPosition(getPosition(speed, MIN_SPEED, MAX_SPEED))
-  }, [speed])
-
   const handleSpeed = multiplier => {
     const newSpeed = speed * multiplier
     if (newSpeed < MIN_SPEED || newSpeed > MAX_SPEED) return
@@ -70,9 +63,13 @@ export default ({ speed, onSpeedChange, pause, onPause, onQuoteChange }) => {
     <Wrapper>
       <FlexWrapper>
         <Button onClick={() => handleSpeed(0.9)}>-</Button>
-        <Line>
-          <LineAcross percentage={position} />
-        </Line>
+        <RangeSlider
+          type="range"
+          min={MIN_SPEED}
+          max={MAX_SPEED}
+          value={speed}
+          onChange={e => onSpeedChange(e.target.value)}
+        />
         <Button onClick={() => handleSpeed(1.1)}>+</Button>
       </FlexWrapper>
       <FlexWrapper>

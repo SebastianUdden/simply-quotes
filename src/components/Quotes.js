@@ -80,6 +80,7 @@ export default ({}) => {
   const [tags, setTags] = useState([])
 
   const handleQuoteChange = direction => {
+    setPause(true)
     if (direction === "forward") {
       updateQuote()
       return
