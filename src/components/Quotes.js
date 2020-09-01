@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { ALL_QUOTES } from "../constants/quotes"
+import { DEFAULT_SPEED } from "../constants/speed"
+import SpeedHandler from "./SpeedHandler"
+import Tags from "./Tags"
 
 const Quotes = styled.div`
-  height: 95vh;
+  height: 84vh;
   margin-top: -80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  @media screen and (orientation: landscape) {
+    height: 100vh;
+  }
 `
 const Quote = styled.div``
+const Controller = styled.div`
+  width: 100%;
+`
 const P = styled.p`
   margin: 5px;
 `
@@ -21,91 +30,91 @@ const Em = styled.p`
   margin: 15px;
   font-style: italic;
 `
-const Buttons = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-const Button = styled.button`
-  font-size: 25px;
-  color: #444;
-  background-color: #f8f8f8;
-  padding: 15px 23px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-`
-
-const Line = styled.div`
-  border-bottom: 5px solid #f3f3f3;
-  height: 1px;
-  width: 100%;
-  position: relative;
-`
-
-const LineAcross = styled.div`
-  border-right: 3px solid #444;
-  height: 10px;
-  width: 1px;
-  margin-top: -2px;
-  position: absolute;
-  left: ${p => p.percentage}%;
-`
 
 const addRandomQuote = (quotes, quotesHistory) => {
   const newQuotes = quotes.filter(quote => !quotesHistory.includes(quote))
   const newQuote = newQuotes[Math.floor(Math.random() * newQuotes.length)]
   if (quotes.length - 1 === quotesHistory.length) return [newQuote]
+  if (quotes.length === 1) {
+    return [quotes[0]]
+  }
   return [newQuote, ...quotesHistory]
 }
 
 const formatQuote = quote => {
-  const formatedQuote = quote.quote.split("/n").map(row => <P>{row}</P>)
+  const formatedQuote =
+    quote && quote.quote.split("/n").map(row => <P>{row}</P>)
   return (
     <Quote>
       {formatedQuote}
-      {quote.author && <Em>- {quote.author}</Em>}
+      {quote && quote.author && <Em>- {quote.author}</Em>}
     </Quote>
   )
 }
 
-const getPosition = (speed, min, max) => {
-  const position = (speed - min) / (max - min)
-  return Math.floor(position * 100)
+const filterQuotes = (quotes, tags) => {
+  if (tags.length === 0) return quotes
+  return quotes.filter(Boolean).filter(({ quote, author, tags: tgs }) =>
+    tags.every(tag => {
+      const lcQuote = quote ? quote.toLowerCase() : ""
+      const lcAuthor = author ? author.toLowerCase() : ""
+      const lcTag = tag.toLowerCase()
+      return (
+        lcQuote.includes(lcTag) ||
+        lcAuthor.includes(lcTag) ||
+        (tgs && tgs.some(t => t === lcTag))
+      )
+    })
+  )
 }
 
 export default ({}) => {
-  const MAX_SPEED = 20000
-  const MIN_SPEED = 50
-  const [speed, setSpeed] = useState(2000)
-  const [position, setPosition] = useState(
-    getPosition(speed, MIN_SPEED, MAX_SPEED)
-  )
+  const [speed, setSpeed] = useState(DEFAULT_SPEED)
+  const [pause, setPause] = useState(false)
+
   const [count, setCount] = useState(0)
+  const [filteredQuotes, setFilteredQuotes] = useState(ALL_QUOTES)
   const [quotesHistory, setQuotesHistory] = useState(
-    addRandomQuote(ALL_QUOTES, [])
+    addRandomQuote(filteredQuotes, [])
   )
-  const updateQuote = () =>
-    setQuotesHistory(addRandomQuote(ALL_QUOTES, quotesHistory))
+  const [tags, setTags] = useState([])
 
-  const handleSpeed = multiplier => {
-    const newSpeed = speed * multiplier
-    if (newSpeed < MIN_SPEED || newSpeed > MAX_SPEED) return
-    setSpeed(newSpeed)
+  const handleQuoteChange = direction => {
+    if (direction === "forward") {
+      updateQuote()
+      return
+    }
+
+    const hasQuoteHistory = quotesHistory.length !== 1
+    if (hasQuoteHistory) {
+      setQuotesHistory(quotesHistory.slice(1))
+      return
+    }
+    updateQuote()
   }
+  const updateQuote = () =>
+    setQuotesHistory(addRandomQuote(filteredQuotes, quotesHistory))
 
   useEffect(() => {
-    setPosition(getPosition(speed, MIN_SPEED, MAX_SPEED))
-  }, [speed])
+    const filtered = filterQuotes(ALL_QUOTES, tags)
+    setFilteredQuotes(filtered)
+    const filteredHistory = filterQuotes(quotesHistory, tags)
+    if (!filteredHistory.length) {
+      setQuotesHistory(addRandomQuote(filtered, quotesHistory))
+      return
+    }
+    setQuotesHistory(filteredHistory)
+    handleQuoteChange("forward")
+  }, [tags])
 
   useEffect(() => {
+    if (pause) return
     const timer = setTimeout(() => {
       setCount(count + 1)
       updateQuote()
     }, speed)
     return () => clearTimeout(timer)
-  }, [count])
+  }, [count, pause])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -116,18 +125,27 @@ export default ({}) => {
     }
   }, [])
 
+  const showQuote =
+    filteredQuotes.length === 1 ? filteredQuotes[0] : quotesHistory[0]
   return (
     <>
       <Quotes>
         <div></div>
-        <h2>{formatQuote(quotesHistory[0])}</h2>
-        <Buttons>
-          <Button onClick={() => handleSpeed(0.9)}>-</Button>
-          <Line>
-            <LineAcross percentage={position} />
-          </Line>
-          <Button onClick={() => handleSpeed(1.1)}>+</Button>
-        </Buttons>
+        <h2>
+          {showQuote ? formatQuote(showQuote) : "No quotes matching filter..."}
+        </h2>
+        <Controller>
+          <Tags tags={tags} onTagsChange={tags => setTags(tags)} />
+          {filteredQuotes.length > 1 && (
+            <SpeedHandler
+              speed={speed}
+              pause={pause}
+              onPause={() => setPause(!pause)}
+              onSpeedChange={speed => setSpeed(speed)}
+              onQuoteChange={handleQuoteChange}
+            />
+          )}
+        </Controller>
       </Quotes>
     </>
   )
