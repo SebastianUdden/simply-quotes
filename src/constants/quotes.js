@@ -1,21 +1,21 @@
 export const ALL_QUOTES = [
   {
-    tags: ["feel-good"],
+    tags: ["feel-good", "happiness"],
     quote: "When life gives you lemons,/n make lemonade!",
   },
   {
-    tags: ["feel-good"],
+    tags: ["feel-good", "happiness"],
     quote: "Always look/n on the bright side of life",
     author: "Life of Brian",
   },
   {
-    tags: ["feel-good"],
+    tags: ["feel-good", "happiness"],
     quote:
       "When life feels johnny rotten,/nthere's something you've forgotten.../nand that's to smile and laugh and dance and sing!",
     author: "Life of Brian",
   },
   {
-    tags: ["workout"],
+    tags: ["workout", "success"],
     quote:
       "The hardest lift you'll ever make, is lifting your but of the couch",
   },
@@ -32,7 +32,7 @@ export const ALL_QUOTES = [
     tags: ["profound", "teamwork"],
     quote:
       "When the snow falls and winter winds blow, the lone wolf dies, but the pack survives.",
-    author: "Ned Stark",
+    author: "George R.R. Martin",
   },
   {
     tags: ["profound", "life"],
@@ -141,5 +141,23 @@ export const ALL_QUOTES = [
     quote:
       "Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn’t really do it, the just saw something. It seemed obvious to them after a while.",
     author: "Steve Jobs",
+  },
+  {
+    tags: ["life", "profound"],
+    quote:
+      "All we have to decide is what to do with the time that is given us.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["life", "profound"],
+    quote:
+      "It's a dangerous business, Frodo, going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["happiness", "life"],
+    quote:
+      "Never forget what you are. The rest of the world will not. Wear it like armor, and it can never be used to hurt you.",
+    author: "George R.R. Martin",
   },
 ]
