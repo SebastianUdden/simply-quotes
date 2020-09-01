@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Quotes from "../components/Quotes"
 
@@ -20,12 +20,19 @@ const Container = styled.div`
 `
 
 export default () => {
-  return (
+  const [finishedLoading, setFinishedLoading] = useState(false)
+
+  useEffect(() => {
+    setFinishedLoading(true)
+  }, [])
+  return finishedLoading ? (
     <Container>
       <H1>
         Simply<WrapWord color="orange">Quotes</WrapWord>
       </H1>
       <Quotes />
     </Container>
+  ) : (
+    ""
   )
 }
