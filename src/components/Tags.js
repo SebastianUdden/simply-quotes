@@ -92,7 +92,7 @@ export default ({ tags = [], onTagsChange, tagOptions }) => {
             <Option>{option}</Option>
           ))}
         </Select>
-        {!showSearch && <Tag onClick={() => setShowSearch(true)}>Search</Tag>}
+        {/* {!showSearch && <Tag onClick={() => setShowSearch(true)}>Search</Tag>}
         {showSearch && (
           <Form
             onBlur={() => {
@@ -116,7 +116,7 @@ export default ({ tags = [], onTagsChange, tagOptions }) => {
               width={tagValue.length}
             />
           </Form>
-        )}
+        )} */}
       </AddTags>
       <Tags>
         {tags.map(tag => (
