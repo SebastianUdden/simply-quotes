@@ -51,11 +51,6 @@ export const ALL_QUOTES = [
   {
     tags: ["profound", "life"],
     quote:
-      "Life is ten percent what happens to you and ninety percent how you respond to it.",
-  },
-  {
-    tags: ["profound", "life"],
-    quote:
       "In three words I can sum up everything I've learned about life:/nit goes on.",
     author: "Robert Frost",
   },
@@ -159,5 +154,168 @@ export const ALL_QUOTES = [
     quote:
       "Never forget what you are. The rest of the world will not. Wear it like armor, and it can never be used to hurt you.",
     author: "George R.R. Martin",
+  },
+  {
+    tags: ["productivity", "engineering", "success"],
+    quote:
+      "First principles is kind of a physics way of looking at the world. You boil things down to the most fundamental truths and say, 'What are we sure is true?' and then reason up from there. Some people can't do that. They just take the [theoretical] approach or reasoning by analogy. They reason from their own experiences, which may not be applicable.",
+    author: "Elon Musk",
+  },
+  {
+    tags: ["profound"],
+    quote: "The only true wisdom is in knowing you know nothing.",
+    author: "Socrates",
+  },
+  {
+    tags: ["productivity", "profound", "success"],
+    quote: "It does not matter how slowly you go as long as you do not stop.",
+    author: "Confucius",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote: "To err is human; to forgive, divine.",
+    author: "Alexander Pope",
+  },
+  {
+    tags: ["life", "productivity", "success"],
+    quote: "The journey of a thousand miles begins with a single step.",
+    author: "Lao Tzu",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote: "Love is patient, love is kind.",
+    author: "Corinthians 13:4-8",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote: "Life is 10% what happens to us and 90% how we react to it.",
+    author: "Charles R. Swindoll",
+  },
+  {
+    tags: ["life", "success"],
+    quote:
+      "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    author: "Nelson Mandela",
+  },
+  {
+    tags: ["life", "success"],
+    quote: "Do or do not. There is no try.",
+    author: "Yoda",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote:
+      "We can complain because rose bushes have thorns, or rejoice because thorns have roses.",
+    author: "Alphonse Karr",
+  },
+  {
+    tags: ["life", "profound"],
+    quote:
+      "A life spent making mistakes is not only more honorable but more useful than a life spent doing nothing.",
+    author: "George Bernard Shaw",
+  },
+  {
+    tags: ["life", "profound"],
+    quote: "Don't cry because it's over, smile because it happened.",
+    author: "Dr. Seuss",
+  },
+  {
+    tags: ["happiness", "profound"],
+    quote: "The only way to have a friend is to be one.",
+    author: "Ralph Waldo Emerson",
+  },
+  {
+    tags: ["happiness", "profound"],
+    quote: "All you need is love.",
+    author: "The Beatles",
+  },
+  {
+    tags: ["success"],
+    quote:
+      "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    author: "Aristotle",
+  },
+  {
+    tags: ["life"],
+    quote: "The only thing we have to fear is fear itself.",
+    author: "Franklin D. Roosevelt",
+  },
+  {
+    tags: ["happiness", "profound"],
+    quote:
+      "Happiness is not something ready-made. It comes from your own actions.",
+    author: "Dalai Lama",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote:
+      "It is during our darkest moments that we must focus to see the light.",
+    author: "Aristotle",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote:
+      "Life is not about waiting for the storm to pass but learning to dance in the rain.",
+    author: "Vivian Greene",
+  },
+  {
+    tags: ["life", "happiness"],
+    quote:
+      "The greatest thing you'll ever learn is just to love and be loved in return.",
+    author: "Moulin Rouge",
+  },
+  {
+    tags: ["life", "profound"],
+    quote: "Just keep swimming.",
+    author: "Finding Nemo",
+  },
+  {
+    tags: ["teamwork"],
+    quote:
+      "If you want to know what people are like, take a good look at how they treat their inferiors, not their equals.",
+    author: "J.K. Rowling",
+  },
+  {
+    tags: ["happiness"],
+    quote:
+      "The problem is not the problem. The problem is your attitude about the problem.",
+    author: "Jack Sparrow",
+  },
+  {
+    tags: ["happiness"],
+    quote: "No one can make you feel inferior without your consent.",
+    author: "Eleanor Roosevelt",
+  },
+  {
+    tags: ["life"],
+    quote: "Even the smallest person can change the course of the future.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["life"],
+    quote: "I will not say: do not weep; for not all tears are an evil.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["life"],
+    quote: "The greatest adventure is what lies ahead.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["life"],
+    quote: "Courage is found in unlikely places.",
+    author: "J.R.R. Tolkien",
+  },
+  {
+    tags: ["life"],
+    quote:
+      "We must all face the choice between what is right and what is easy.",
+    author: "J.K. Rowling",
+  },
+  {
+    tags: ["happiness"],
+    quote:
+      "Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.",
+    author: "J.K. Rowling",
   },
 ]
