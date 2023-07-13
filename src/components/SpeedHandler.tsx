@@ -69,8 +69,8 @@ const FlexWrapper = styled.div`
 
 const Button = styled.button`
   font-size: 15px;
-  color: #444;
-  background-color: #f8f8f8;
+  color: #fff;
+  background-color: #000;
   padding: 10px 15px;
   border-radius: 50%;
   border: none;
@@ -85,7 +85,7 @@ const RangeSlider = styled.input`
   width: 100%;
   appearance: none;
   height: 5px;
-  background-color: #f3f3f3;
+  background-color: #000;
   outline: none;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -97,7 +97,7 @@ const RangeSlider = styled.input`
     margin-top: -2px;
     width: 5px;
     height: 15px;
-    background-color: #444;
+    background-color: #fff;
     cursor: pointer;
   }
 `;
@@ -105,7 +105,7 @@ const RangeSlider = styled.input`
 const Speed = styled.span`
   font-size: 12px;
   margin-bottom: -25px;
-  color: #888;
+  color: #fff;
 `;
 
 export default SpeedHandler;

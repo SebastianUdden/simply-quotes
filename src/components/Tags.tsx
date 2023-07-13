@@ -125,9 +125,9 @@ const Select = styled.select<{ arrowHexColor: string }>`
   appearance: none;
   padding: 5px 35px 5px 15px;
   margin: 5px;
-  color: #444;
+  color: #fff;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: #000;
   border: 1px solid transparent;
   text-transform: capitalize;
   background-image: ${(p) =>
